@@ -1,0 +1,63 @@
+body{
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.top-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+
+.player-field,
+.cpu-field {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cpu-field {
+    justify-content: space-between;
+    width: 189px;
+}
+
+.battlefield{
+    display: flex;
+    height: 100px;
+    width: 200px;
+    flex-direction: column;
+}
+
+.player-pfp {
+    display: flex;
+    height: 100px;
+    width: 80px;
+    border-style: solid;
+    border-color: blue;
+    justify-content: center;
+}
+
+.cpu-pfp {
+    height: 100px;
+    width: 80px;
+    border-style: dashed;
+    border-color: red;
+}
+
+.player-score,
+.cpu-score {
+    margin: 0;
+}
