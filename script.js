@@ -1,3 +1,23 @@
+//Event Listener for Buttons
+
+const rockBtn=document.querySelector(".rock");
+const paperBtn=document.querySelector(".paper");
+const scissorsBtn=document.querySelector(".scissors");
+
+rockBtn.addEventListener('mousedown', function(){
+    playRound("rock");
+});
+
+paperBtn.addEventListener('mousedown', function(){
+    playRound("paper");
+});
+
+scissorsBtn.addEventListener('mousedown', function(){
+    playRound("scissors");
+});
+
+//RNG for computer to make choice
+
 function computerPlay(){
     let computerResult=Math.floor(Math.random()*3);
     if (computerResult==0){
@@ -9,17 +29,20 @@ function computerPlay(){
     else {return 'scissors'};
 }
 
-function playRound(playerSelection, computerSelection){
-    if (playerSelection=="rock" && computerSelection=="paper"){
-       return console.log("I picked "+computerSelection+ " , you lose!")
-    }
-    else if (playerSelection=="paper" && computerSelection=="scissors"){
+//Plays a single round, decides winner, loser, tie
+
+function playRound(playerSelection){
+    let computerSelection=computerPlay();
+    if (playerSelection==="rock" && computerSelection==="paper"){
         return console.log("I picked "+computerSelection+ " , you lose!")
     }
-    else if (playerSelection=="scissors" && computerSelection=="rock"){
+    else if (playerSelection==="paper" && computerSelection==="scissors"){
+        return console.log("I picked "+computerSelection+ " , you lose!")
+    }
+    else if (playerSelection==="scissors" && computerSelection==="rock"){
         return console.log("I picked " +computerSelection+ " , you lose!")
     }
-    else if (playerSelection==computerSelection){
+    else if (playerSelection===computerSelection){
         return console.log("We both picked " + playerSelection + " , it's a tie!") 
     }
     else {
@@ -27,18 +50,12 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-/*
+//function to play game 5 times
+
 function game(){
-    for (i=0; i<5; i++){
-    let playerChoice=prompt("Enter Rock, Paper, or Scissors").toLowerCase();
-    let computerChoice=computerPlay();
-    playRound(playerChoice, computerChoice);
-    }
+    //for (i=0; i<5; i++){
+    playerChoice=prompt("Enter Rock, Paper, or Scissors").toLowerCase();
+    //let computerChoice=computerPlay();
+    playRound(playerChoice);
 }
-
-game();
-
-*/
-
-
 
