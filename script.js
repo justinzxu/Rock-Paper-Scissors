@@ -72,6 +72,10 @@ function playRound(playerSelection){
 function checkRound(){
     if (round===5){
         gameRound.innerHTML= `<h3>Round ${newRound}/5</h3>`;
+        if (pScore>cScore){
+            alert("you win!");
+        }
+        else {alert("I win!")};
         newRound=0;
         round=newRound;
         newPscore=0;
@@ -80,7 +84,6 @@ function checkRound(){
         cpuScore.innerHTML=`${newCscore}`;
         pScore=newPscore;
         cScore=newCscore;
-        alert("game-over");
     } 
 }
 
