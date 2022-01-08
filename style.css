@@ -48,13 +48,17 @@ body{
     border-style: solid;
     border-color: blue;
     justify-content: center;
+    align-items: center;
 }
 
 .cpu-pfp {
+    display: flex;
     height: 100px;
     width: 80px;
     border-style: dashed;
     border-color: red;
+    justify-content: center;
+    align-items: center;
 }
 
 .player-score,
