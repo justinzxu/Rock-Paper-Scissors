@@ -3,17 +3,27 @@
 const rockBtn=document.querySelector(".rock");
 const paperBtn=document.querySelector(".paper");
 const scissorsBtn=document.querySelector(".scissors");
+const playerScore=document.querySelector(".player-score");
+const cpuScore=document.querySelector(".cpu-score");
+const gameRound=document.querySelector(".round");
 
-rockBtn.addEventListener('mousedown', function(){
-    playRound("rock");
+let round=1;
+let pScore=0;
+let cScore=0;
+
+rockBtn.addEventListener('mouseup', function(){
+    let result=playRound("rock");
+    game(result);
 });
 
 paperBtn.addEventListener('mousedown', function(){
-    playRound("paper");
+    let result=playRound("paper");
+    game(result);
 });
 
 scissorsBtn.addEventListener('mousedown', function(){
-    playRound("scissors");
+    let result=playRound("scissors");
+    game(result);
 });
 
 //RNG for computer to make choice
@@ -32,6 +42,103 @@ function computerPlay(){
 //Plays a single round, decides winner, loser, tie
 
 function playRound(playerSelection){
+    //win=0;
+    //loss=1;
+    //tie=2;
+    let computerSelection=computerPlay();
+    
+    if (playerSelection==="rock" && computerSelection==="paper"){
+        return 1;
+    }
+    else if (playerSelection==="paper" && computerSelection==="scissors"){
+        return 1;
+    }
+    else if (playerSelection==="scissors" && computerSelection==="rock"){
+        return 1;
+    }
+    else if (playerSelection===computerSelection){
+        return null;
+    }
+    else {
+        return 0;
+    }
+}
+
+function checkRound(){
+    if (round===5){
+        gameRound.innerHTML=`Round ${newRound} /5`;
+        alert("game-over");
+        newRound=0;
+        round=newRound;
+        newPscore=0;
+        newCscore=0;
+        playerScore.innerHTML= `${newPscore}`;
+        cpuScore.innerHTML=`${newCscore}`;
+        pScore=newPscore;
+        cScore=newCscore;
+    } 
+}
+
+function game(input){
+    if (input===0){
+        newPscore=pScore+1;
+        playerScore.innerHTML= `${newPscore}`;
+        console.log("win");
+        pScore=newPscore;
+        newRound=round+1;
+        gameRound.innerHTML=`Round ${newRound} /5`;
+        round=newRound;
+        checkRound();
+    }
+    else if (input===1){
+        newCscore=cScore+1;
+        cpuScore.innerHTML=`${newCscore}`;
+        console.log("lose");
+        cScore=newCscore;
+        newRound=round+1;
+        gameRound.innerHTML=`Round ${newRound} /5`;
+        round=newRound;
+        checkRound();      
+    }
+    else if (input===null){
+        console.log("tie");
+        newRound=round+1;
+        gameRound.innerHTML=`Round ${newRound} /5`;
+        round=newRound;
+        checkRound();
+    }
+}
+
+//function to play game 5 times
+
+/*
+function game(playerInput){
+    //for (i=0; i<5; i++){
+        let playerChoice=playerInput;
+        let result=playRound(playerChoice);
+        //let playerScore=0;
+        //let cpuScore=0;
+        //let round=i+1;
+        //let round=0;
+        //for (i=0; i<5; i++){
+        //playerChoice=prompt("Enter Rock, Paper, or Scissors").toLowerCase();
+        //let computerChoice=computerPlay();
+        playRound(playerChoice);
+        if (result===0){
+            console.log("win");
+        }
+        else if (result===1) {
+            console.log("loss");
+        }
+        else {
+            console.log("tie");
+        }
+    }        
+//}
+*/
+
+/*
+function playRound(playerSelection){
     let computerSelection=computerPlay();
     if (playerSelection==="rock" && computerSelection==="paper"){
         return console.log("I picked "+computerSelection+ " , you lose!")
@@ -49,13 +156,4 @@ function playRound(playerSelection){
         return console.log("I picked " +computerSelection + " and you picked " + playerSelection + " , you win!")
     }
 }
-
-//function to play game 5 times
-
-function game(){
-    //for (i=0; i<5; i++){
-    playerChoice=prompt("Enter Rock, Paper, or Scissors").toLowerCase();
-    //let computerChoice=computerPlay();
-    playRound(playerChoice);
-}
-
+*/
