@@ -6,22 +6,27 @@ const scissorsBtn=document.querySelector(".scissors");
 const playerScore=document.querySelector(".player-score");
 const cpuScore=document.querySelector(".cpu-score");
 const gameRound=document.querySelector(".round");
+const playerChoice=document.querySelector(".pchoice");
+const cpuChoice=document.querySelector(".cchoice");
 
-let round=1;
+let round=0;
 let pScore=0;
 let cScore=0;
 
 rockBtn.addEventListener('mouseup', function(){
+    playerChoice.innerHTML="rock";
     let result=playRound("rock");
     game(result);
 });
 
 paperBtn.addEventListener('mousedown', function(){
+    playerChoice.innerHTML="paper";
     let result=playRound("paper");
     game(result);
 });
 
 scissorsBtn.addEventListener('mousedown', function(){
+    playerChoice.innerHTML="scissors";
     let result=playRound("scissors");
     game(result);
 });
@@ -46,7 +51,7 @@ function playRound(playerSelection){
     //loss=1;
     //tie=2;
     let computerSelection=computerPlay();
-    
+    cpuChoice.innerHTML=`${computerSelection}`;
     if (playerSelection==="rock" && computerSelection==="paper"){
         return 1;
     }
@@ -66,8 +71,7 @@ function playRound(playerSelection){
 
 function checkRound(){
     if (round===5){
-        gameRound.innerHTML=`Round ${newRound} /5`;
-        alert("game-over");
+        gameRound.innerHTML= `<h3>Round ${newRound}/5</h3>`;
         newRound=0;
         round=newRound;
         newPscore=0;
@@ -76,6 +80,7 @@ function checkRound(){
         cpuScore.innerHTML=`${newCscore}`;
         pScore=newPscore;
         cScore=newCscore;
+        alert("game-over");
     } 
 }
 
@@ -86,7 +91,7 @@ function game(input){
         console.log("win");
         pScore=newPscore;
         newRound=round+1;
-        gameRound.innerHTML=`Round ${newRound} /5`;
+        gameRound.innerHTML=`<h3>Round ${newRound}/5</h3>`;
         round=newRound;
         checkRound();
     }
@@ -96,14 +101,14 @@ function game(input){
         console.log("lose");
         cScore=newCscore;
         newRound=round+1;
-        gameRound.innerHTML=`Round ${newRound} /5`;
+        gameRound.innerHTML=`<h3>Round ${newRound}/5</h3>`;
         round=newRound;
         checkRound();      
     }
     else if (input===null){
         console.log("tie");
         newRound=round+1;
-        gameRound.innerHTML=`Round ${newRound} /5`;
+        gameRound.innerHTML=`<h3>Round ${newRound}/5</h3>`;
         round=newRound;
         checkRound();
     }
